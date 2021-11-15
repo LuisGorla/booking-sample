@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
+﻿using Microsoft.EntityFrameworkCore;
 using DAL.Models;
+using Microsoft.Extensions.Configuration;
+using System;
 
 #nullable disable
 
@@ -38,7 +38,11 @@ namespace DAL.Data
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer("Data Source=SVARLP00564;Initial Catalog=booking;Trusted_Connection=True;");
+                IConfigurationRoot configuration = new ConfigurationBuilder()
+                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                    .AddJsonFile("appsettings.json", optional: false)
+                    .Build();
+                optionsBuilder.UseSqlServer(configuration.GetConnectionString("SQLConnection"));
             }
         }
 
