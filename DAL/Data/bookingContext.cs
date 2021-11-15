@@ -2,6 +2,7 @@
 using DAL.Models;
 using Microsoft.Extensions.Configuration;
 using System;
+using System.IO;
 
 #nullable disable
 
@@ -36,14 +37,35 @@ namespace DAL.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            if (!optionsBuilder.IsConfigured)
+            try
             {
-                IConfigurationRoot configuration = new ConfigurationBuilder()
-                    .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
-                    .AddJsonFile("appsettings.json", optional: false)
-                    .Build();
-                optionsBuilder.UseSqlServer(configuration.GetConnectionString("SQLConnection"));
+                if (!optionsBuilder.IsConfigured)
+                {
+                    IConfigurationRoot configuration = new ConfigurationBuilder()
+                        .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                        .AddJsonFile("appsettings.json", optional: false)
+                        .Build();
+                    optionsBuilder.UseSqlServer(configuration.GetConnectionString("SQLConnection"));
+                }
             }
+            catch (Exception)
+            {
+                if (!optionsBuilder.IsConfigured)
+                {
+                    string conn = string.Empty;
+                    int counter = 0;
+                    foreach (string line in File.ReadLines(AppDomain.CurrentDomain.BaseDirectory + "ConnectionStrings.txt"))
+                    {
+                        if (!string.IsNullOrEmpty(line))
+                        {
+                            conn = line;
+                        }
+                        counter++;
+                    }
+
+                    optionsBuilder.UseSqlServer(conn);
+                }                
+            }        
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
