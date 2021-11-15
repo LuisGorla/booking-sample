@@ -13,7 +13,6 @@ namespace DAL.Models
         public string Operacion { get; set; }
         public int? IdUsuario { get; set; }
         public string Dvh { get; set; }
-
         public virtual Usuario IdUsuarioNavigation { get; set; }
     }
 }

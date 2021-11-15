@@ -1,4 +1,5 @@
 ﻿using BLL.Services;
+using DAL.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,26 +12,25 @@ using System.Windows.Forms;
 
 namespace UI
 {
-    public partial class Form1 : Form
+    public partial class BackupABM : Form
     {
         private BackupService _backupService;
-        public Form1()
+        public BackupABM()
         {
             InitializeComponent();
             _backupService = new BackupService();
-            backupDataGrid.DataSource = _backupService.GetAll();
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
+        private void Savebtn_Click(object sender, EventArgs e)
         {
-            
-        }
+            var backup = new Backup
+            {
+                Directorio = Directoriotxt.Text,
+                Fecha = fechadtp.Value,
+                Usuario = Usuariotxt.Text
+            };
 
-        private void insertToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            var form = new BackupABM();
-
-            form.Show();
+            _backupService.Insert(backup);
         }
     }
 }
