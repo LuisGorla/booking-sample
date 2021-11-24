@@ -13,8 +13,7 @@ namespace BLL.Services
     public class LoginService : ILoginService
     {
         public bool LoginUser(LoginViewModel usuario)
-        {
-            var repository = new GenericRepository<Usuario>();
+        {            
 
             if (Security.Security.VerificarUsuario(usuario))
             {               

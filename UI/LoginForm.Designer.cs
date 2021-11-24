@@ -34,6 +34,7 @@ namespace UI
             this.Loginbtn = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.Passwordtxt = new System.Windows.Forms.TextBox();
+            this.registrarUsuarioBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // Usuariotxt
@@ -77,12 +78,24 @@ namespace UI
             this.Passwordtxt.Name = "Passwordtxt";
             this.Passwordtxt.Size = new System.Drawing.Size(153, 23);
             this.Passwordtxt.TabIndex = 4;
+            this.Passwordtxt.UseSystemPasswordChar = true;
+            // 
+            // registrarUsuarioBtn
+            // 
+            this.registrarUsuarioBtn.Location = new System.Drawing.Point(53, 294);
+            this.registrarUsuarioBtn.Name = "registrarUsuarioBtn";
+            this.registrarUsuarioBtn.Size = new System.Drawing.Size(153, 23);
+            this.registrarUsuarioBtn.TabIndex = 5;
+            this.registrarUsuarioBtn.Text = "Registrar Usuario";
+            this.registrarUsuarioBtn.UseVisualStyleBackColor = true;
+            this.registrarUsuarioBtn.Click += new System.EventHandler(this.registrarUsuarioBtn_Click);
             // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(257, 291);
+            this.ClientSize = new System.Drawing.Size(257, 355);
+            this.Controls.Add(this.registrarUsuarioBtn);
             this.Controls.Add(this.Passwordtxt);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.Loginbtn);
@@ -102,5 +115,6 @@ namespace UI
         private System.Windows.Forms.Button Loginbtn;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox Passwordtxt;
+        private System.Windows.Forms.Button registrarUsuarioBtn;
     }
 }

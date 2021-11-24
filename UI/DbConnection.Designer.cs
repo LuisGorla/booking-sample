@@ -30,8 +30,8 @@ namespace UI
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.conStrTxt = new System.Windows.Forms.TextBox();
+            this.ConnectBtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -43,29 +43,30 @@ namespace UI
             this.label1.TabIndex = 0;
             this.label1.Text = "Por favor, ingerese el string de conexión";
             // 
-            // textBox1
+            // conStrTxt
             // 
-            this.textBox1.Location = new System.Drawing.Point(37, 59);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(218, 23);
-            this.textBox1.TabIndex = 1;
+            this.conStrTxt.Location = new System.Drawing.Point(37, 59);
+            this.conStrTxt.Name = "conStrTxt";
+            this.conStrTxt.Size = new System.Drawing.Size(218, 23);
+            this.conStrTxt.TabIndex = 1;
             // 
-            // button1
+            // ConnectBtn
             // 
-            this.button1.Location = new System.Drawing.Point(100, 105);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Conectar";
-            this.button1.UseVisualStyleBackColor = true;
+            this.ConnectBtn.Location = new System.Drawing.Point(100, 105);
+            this.ConnectBtn.Name = "ConnectBtn";
+            this.ConnectBtn.Size = new System.Drawing.Size(75, 23);
+            this.ConnectBtn.TabIndex = 2;
+            this.ConnectBtn.Text = "Conectar";
+            this.ConnectBtn.UseVisualStyleBackColor = true;
+            this.ConnectBtn.Click += new System.EventHandler(this.ConnectBtn_Click);
             // 
             // DbConnection
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(291, 168);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.ConnectBtn);
+            this.Controls.Add(this.conStrTxt);
             this.Controls.Add(this.label1);
             this.Name = "DbConnection";
             this.Text = "Data Base";
@@ -77,7 +78,7 @@ namespace UI
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox conStrTxt;
+        private System.Windows.Forms.Button ConnectBtn;
     }
 }

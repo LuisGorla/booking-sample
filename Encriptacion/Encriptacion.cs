@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 
-namespace Security
+namespace Encriptacion
 {
     public class Encriptacion
     {
@@ -16,7 +13,7 @@ namespace Security
             MD5 md5 = new MD5CryptoServiceProvider();
 
             md5.ComputeHash(Encoding.ASCII.GetBytes(text));
-            
+
             byte[] result = md5.Hash;
 
             StringBuilder strBuilder = new StringBuilder();

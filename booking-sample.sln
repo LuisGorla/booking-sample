@@ -3,15 +3,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30114.105
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UI", "UI\UI.csproj", "{79892D38-36AE-467A-BB51-195271F80269}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UI", "UI\UI.csproj", "{79892D38-36AE-467A-BB51-195271F80269}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "DAL\DAL.csproj", "{844F11DC-9182-48A4-B0D2-BEF7C2AB42F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "DAL\DAL.csproj", "{844F11DC-9182-48A4-B0D2-BEF7C2AB42F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BLL", "BLL\BLL.csproj", "{0D1339AC-7D7B-460E-B15E-039340BAD763}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BLL", "BLL\BLL.csproj", "{0D1339AC-7D7B-460E-B15E-039340BAD763}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BE", "BE\BE.csproj", "{F83794DA-4244-4B1E-956B-D23FA63D6C8E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BE", "BE\BE.csproj", "{F83794DA-4244-4B1E-956B-D23FA63D6C8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Security", "Security\Security.csproj", "{8587E590-8364-47D3-A55B-1F4AC707EDA7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Security", "Security\Security.csproj", "{8587E590-8364-47D3-A55B-1F4AC707EDA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Encriptacion", "Encriptacion\Encriptacion.csproj", "{C937E9A7-5D9C-4B5E-86F4-26E965C8F498}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +41,10 @@ Global
 		{8587E590-8364-47D3-A55B-1F4AC707EDA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8587E590-8364-47D3-A55B-1F4AC707EDA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8587E590-8364-47D3-A55B-1F4AC707EDA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C937E9A7-5D9C-4B5E-86F4-26E965C8F498}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C937E9A7-5D9C-4B5E-86F4-26E965C8F498}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C937E9A7-5D9C-4B5E-86F4-26E965C8F498}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C937E9A7-5D9C-4B5E-86F4-26E965C8F498}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

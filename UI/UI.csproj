@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BLL\BLL.csproj" />
+    <ProjectReference Include="..\Encriptacion\Encriptacion.csproj" />
   </ItemGroup>
 
 </Project>
