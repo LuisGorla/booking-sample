@@ -10,7 +10,6 @@ namespace BE.ViewModels
     {
         public string DNI { get; set; }
         public string Password { get; set; }
-
         public int IdUsuario { get; set; }
     }
 }

@@ -58,14 +58,14 @@ namespace DAL.Data
                     {
                         if (!string.IsNullOrEmpty(line))
                         {
-                            conn = line;
+                            conn = Encriptacion.Encriptacion.DecryptString(line);
                         }
                         counter++;
                     }
 
                     optionsBuilder.UseSqlServer(conn);
-                }                
-            }        
+                }
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -222,7 +222,7 @@ namespace DAL.Data
                 entity.HasKey(e => e.IdPatente)
                     .HasName("PK_Patente");
 
-                entity.Property(e => e.IdPatente).ValueGeneratedNever();
+                entity.Property(e => e.IdPatente).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Detalle)
                     .HasMaxLength(50)
@@ -262,7 +262,7 @@ namespace DAL.Data
 
                 entity.ToTable("PatenteUsuario");
 
-                entity.Property(e => e.IdPatenteUsuario).ValueGeneratedNever();
+                entity.Property(e => e.IdPatenteUsuario).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Dvh)
                     .HasMaxLength(50)
@@ -352,7 +352,7 @@ namespace DAL.Data
             {
                 entity.HasKey(e => e.IdUsuario);
 
-                entity.Property(e => e.IdUsuario).ValueGeneratedNever();
+                entity.Property(e => e.IdUsuario).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Apellido)
                     .IsRequired()

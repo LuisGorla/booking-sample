@@ -13,7 +13,7 @@ namespace Security
         public static bool VerificarUsuario (LoginViewModel usuario) {
 
             var repository = new GenericRepository<Usuario>();
-
+            var a = repository.GetAll();
             LoggedUser = repository.GetAll().Where(x => Encriptacion.Encriptacion.DecryptString(x.Dni) == usuario.DNI).FirstOrDefault();
 
             if (LoggedUser == null)

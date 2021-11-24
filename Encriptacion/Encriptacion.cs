@@ -5,7 +5,7 @@ using System.IO;
 
 namespace Encriptacion
 {
-    public class Encriptacion
+    public static class Encriptacion
     {
         private readonly static string key = "b14ca5898a4e4142aace2ea2143a2410";
         public static string EncriptarIrreversible(string text)
