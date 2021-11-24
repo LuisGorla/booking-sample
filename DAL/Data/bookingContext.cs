@@ -78,7 +78,7 @@ namespace DAL.Data
 
                 entity.ToTable("Backup");
 
-                entity.Property(e => e.IdBackup).ValueGeneratedNever();
+                entity.Property(e => e.IdBackup).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Directorio).IsUnicode(false);
 
@@ -90,8 +90,9 @@ namespace DAL.Data
 
                 entity.HasOne(d => d.IdUsuarioNavigation)
                     .WithMany(p => p.Backups)
-                    .HasForeignKey(d => d.IdUsuario)
+                    .HasForeignKey(d => d.IdUsuario)                    
                     .HasConstraintName("FK_Backup_Usuarios");
+                    
             });
 
             modelBuilder.Entity<Bitacora>(entity =>
@@ -376,6 +377,7 @@ namespace DAL.Data
                     .HasColumnName("DNI");
 
                 entity.Property(e => e.Dvh)
+                    .IsRequired()
                     .HasMaxLength(50)
                     .IsUnicode(false)
                     .HasColumnName("dvh");

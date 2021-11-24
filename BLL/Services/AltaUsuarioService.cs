@@ -14,8 +14,7 @@ namespace BLL.Services
         public void Delete(Usuario usuario)
         {
             var repository = new GenericRepository<Usuario>();
-            var user = repository.GetById(usuario.IdUsuario);
-            repository.Delete(user);
+            repository.Delete(usuario);            
             repository.Save();
         }
 

@@ -30,7 +30,7 @@ namespace UI
         private void InitializeComponent()
         {
             this.asignarPatenteBtn = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.altaUsuariosBtn = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.borrarUserSinPatenteBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -52,14 +52,15 @@ namespace UI
             this.asignarPatenteBtn.UseVisualStyleBackColor = true;
             this.asignarPatenteBtn.Click += new System.EventHandler(this.asignarPatenteBtn_Click);
             // 
-            // button2
+            // altaUsuariosBtn
             // 
-            this.button2.Location = new System.Drawing.Point(104, 319);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.altaUsuariosBtn.Location = new System.Drawing.Point(104, 319);
+            this.altaUsuariosBtn.Name = "altaUsuariosBtn";
+            this.altaUsuariosBtn.Size = new System.Drawing.Size(135, 23);
+            this.altaUsuariosBtn.TabIndex = 1;
+            this.altaUsuariosBtn.Text = "Alta Usuarios";
+            this.altaUsuariosBtn.UseVisualStyleBackColor = true;
+            this.altaUsuariosBtn.Click += new System.EventHandler(this.altaUsuariosBtn_Click);
             // 
             // button3
             // 
@@ -132,7 +133,7 @@ namespace UI
             this.Controls.Add(this.usuarioDataGrid);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.altaUsuariosBtn);
             this.Controls.Add(this.asignarPatenteBtn);
             this.Name = "MenuForm";
             this.Text = "MenuForm";
@@ -147,7 +148,7 @@ namespace UI
         #endregion
 
         private System.Windows.Forms.Button asignarPatenteBtn;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button altaUsuariosBtn;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button borrarUserSinPatenteBtn;
         private System.Windows.Forms.GroupBox groupBox1;

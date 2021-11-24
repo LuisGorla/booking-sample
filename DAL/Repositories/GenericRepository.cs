@@ -19,8 +19,8 @@ namespace DAL.Repositories
         }
         public void Delete(T id)
         {
-            T existing = _table.Find(id);
-            _table.Remove(existing);
+            //T existing = _table.Find(id);
+            _table.Remove(id);
         }
 
         public IEnumerable<T> GetAll()

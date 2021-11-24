@@ -84,5 +84,12 @@ namespace UI
             
             
         }
+
+        private void altaUsuariosBtn_Click(object sender, EventArgs e)
+        {
+            var alta = new AltaUsuario();
+            alta.Show();
+            this.Close();
+        }
     }
 }
