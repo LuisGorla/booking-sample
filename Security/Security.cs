@@ -32,23 +32,27 @@ namespace Security
             }
         }
 
-        public static IEnumerable<Patente> VerificarPatente() {
-            var repository2 = new GenericRepository<Patente>();
-            var patentes = repository2.GetAll();
-
-            var repository = new GenericRepository<PatenteUsuario>();
-            var LoggedUserPatentes = repository.GetAll().Where(x => x.IdUsuario == LoggedUser.IdUsuario);
-
-            patentes.Where(x => LoggedUserPatentes.All(y => y.IdPatente == x.IdPatente));
-
-            if (LoggedUserPatentes != null)
+        public static IEnumerable<PatenteUsuario> VerificarPatente() {
+            try
             {
-                return patentes;
+                var repository = new GenericRepository<PatenteUsuario>();
+                var LoggedUserPatentes = repository.GetAll().Where(x => x.IdUsuario == LoggedUser.IdUsuario).ToList();
+
+                if (LoggedUserPatentes.Count > 0)
+                {
+                    return LoggedUserPatentes;
+                }
+                else
+                {
+                    return null;
+                }
             }
-            else
+            catch 
             {
                 return null;
-            }            
+            }
+            
+            
         }
         public static IEnumerable<FamiliaUsuario> VerificarFamilia() {
             var repository = new GenericRepository<FamiliaUsuario>();
@@ -62,6 +66,38 @@ namespace Security
             var encriptarDvh = Encriptacion.Encriptacion.EncriptarIrreversible(dvh);
 
             return encriptarDvh;
+        }
+        public static bool VerificarIntegridad()
+        {
+            var repoPatente = new GenericRepository<Patente>();
+            var patentes = repoPatente.GetAll();
+
+            bool[] integridad = new bool[1];
+
+            foreach (var patente in patentes)
+            {
+                string concat = $"{patente.Detalle}{patente.IdPatente}";
+                if (patente.Dvh == CrearDVH(concat))
+                {
+                    integridad[0] = true;
+                }
+                else
+                {
+                    integridad[0] = false;
+                }
+
+                    
+            }
+
+            if (integridad.Contains<bool>(false))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+
         }
     }
 }

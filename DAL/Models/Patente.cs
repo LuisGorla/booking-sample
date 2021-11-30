@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -12,7 +14,8 @@ namespace DAL.Models
             PatenteFamilia = new HashSet<PatenteFamilium>();
             PatenteUsuarios = new HashSet<PatenteUsuario>();
         }
-
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int IdPatente { get; set; }
         public string Detalle { get; set; }
         public string Dvh { get; set; }

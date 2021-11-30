@@ -1,11 +1,9 @@
 ﻿using BLL.Services.Interfaces;
 using DAL.Models;
 using DAL.Repositories;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BLL.Services
 {
@@ -40,6 +38,11 @@ namespace BLL.Services
         public void Update(Backup backup)
         {
             throw new NotImplementedException();
+        }
+        public void RunProccedure(string command, SqlParameter[] parameter)
+        {
+            var repository = new GenericRepository<Backup>();
+            repository.RunProccedure(command, parameter);
         }
     }
 }

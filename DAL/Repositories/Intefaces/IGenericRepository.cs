@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,5 +15,6 @@ namespace DAL.Repositories.Intefaces
         void Delete(T id);
         void Update(T obj);
         void Save();
+        void RunProccedure(string command, SqlParameter[] parameter);
     }
 }

@@ -101,7 +101,7 @@ namespace DAL.Data
 
                 entity.ToTable("Bitacora");
 
-                entity.Property(e => e.IdBicatora).ValueGeneratedNever();
+                entity.Property(e => e.IdBicatora).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Dvh)
                     .HasMaxLength(50)
@@ -141,7 +141,7 @@ namespace DAL.Data
                 entity.HasKey(e => e.IdFamilia)
                     .HasName("PK_Familia");
 
-                entity.Property(e => e.IdFamilia).ValueGeneratedNever();
+                entity.Property(e => e.IdFamilia).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Detalle)
                     .HasMaxLength(50)
@@ -159,7 +159,7 @@ namespace DAL.Data
 
                 entity.ToTable("FamiliaUsuario");
 
-                entity.Property(e => e.IdFamiliaUsuario).ValueGeneratedNever();
+                entity.Property(e => e.IdFamiliaUsuario).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Dvh)
                     .HasMaxLength(50)
@@ -220,7 +220,7 @@ namespace DAL.Data
 
             modelBuilder.Entity<Patente>(entity =>
             {
-                entity.HasKey(e => e.IdPatente)
+                entity.HasKey(e => e.IdPatente)                    
                     .HasName("PK_Patente");
 
                 entity.Property(e => e.IdPatente).ValueGeneratedOnAdd();
@@ -239,7 +239,7 @@ namespace DAL.Data
             {
                 entity.HasKey(e => e.IdPatenteFamilia);
 
-                entity.Property(e => e.IdPatenteFamilia).ValueGeneratedNever();
+                entity.Property(e => e.IdPatenteFamilia).ValueGeneratedOnAdd();
 
                 entity.Property(e => e.Dvh)
                     .HasMaxLength(50)

@@ -13,7 +13,9 @@ namespace BLL.Services
     {
         public void Delete(PatenteUsuario patenteusuario)
         {
-            throw new NotImplementedException();
+            var repository = new GenericRepository<PatenteUsuario>();
+            repository.Delete(patenteusuario);
+            repository.Save();
         }
 
         public IEnumerable<PatenteUsuario> GetAll()

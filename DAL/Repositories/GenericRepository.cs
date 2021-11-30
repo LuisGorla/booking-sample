@@ -1,9 +1,11 @@
 ﻿using DAL.Data;
 using DAL.Repositories.Intefaces;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace DAL.Repositories
 {
@@ -48,5 +50,14 @@ namespace DAL.Repositories
             _table.Attach(obj);
             _dbcontext.Entry(obj).State = EntityState.Modified;
         }
+
+        public void RunProccedure(string command, SqlParameter[] parameter)
+        {
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.Append($"EXECUTE {command}");
+            strBuilder.Append(string.Join(",", parameter.ToList().Select(s => $" @{s.ParameterName}")));
+            _dbcontext.Set<T>().FromSqlRaw(command, parameter);
+        }
+
     }
 }

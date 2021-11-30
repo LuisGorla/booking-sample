@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using DAL.Models;
+using Microsoft.Data.SqlClient;
 
 namespace BLL.Services.Interfaces
 {
@@ -14,5 +11,7 @@ namespace BLL.Services.Interfaces
         public void Insert(Backup backup);
         public void Update(Backup backup); 
         public void Delete(Backup backup);
+        public void RunProccedure(string command, SqlParameter[] parameter);
+        
     }
 }

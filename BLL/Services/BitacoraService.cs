@@ -6,33 +6,35 @@ using System.Collections.Generic;
 
 namespace BLL.Services
 {
-    public class AltaPatenteService : IAltaPatente
+    public class BitacoraService : IBitacoraService
     {
-        public void Delete(Patente patente)
+        public void Delete(Bitacora bitacora)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Patente> GetAll()
+        public IEnumerable<Bitacora> GetAll()
         {
-            var repository = new GenericRepository<Patente>();
+            var repository = new GenericRepository<Bitacora>();
+
             var result = repository.GetAll();
+
             return result;
         }
 
-        public IEnumerable<Patente> GetById()
+        public IEnumerable<Bitacora> GetById()
         {
             throw new NotImplementedException();
         }
 
-        public void Insert(Patente patente)
+        public void Insert(Bitacora bitacora)
         {
-            var repository = new GenericRepository<Patente>();
-            repository.Insert(patente);
+            var repository = new GenericRepository<Bitacora>();
+            repository.Insert(bitacora);
             repository.Save();
         }
 
-        public void Update(Patente patente)
+        public void Update(Bitacora bitacora)
         {
             throw new NotImplementedException();
         }
