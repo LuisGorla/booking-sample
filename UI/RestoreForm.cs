@@ -1,4 +1,6 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using BLL.Services;
+using DAL.Models;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,12 +11,14 @@ namespace UI
 {
     public partial class RestoreForm : Form
     {
+        private BitacoraService _bitacoraService;
         private List<string> _paths;
         public RestoreForm()
         {
             InitializeComponent();
             _paths = new List<string>();
             openFileDialog1.Multiselect = true;
+            _bitacoraService = new BitacoraService();
         }
 
         private void examinarBtn_Click(object sender, EventArgs e)
@@ -31,6 +35,19 @@ namespace UI
         private void restoreBtn_Click(object sender, EventArgs e)
         {
             RestoreBacup(_paths);
+
+            var concatDvh = $"{4}{DateTime.Now}{Security.Security.LoggedUser.IdUsuario}{"Restore Generado"}";
+            Bitacora bitacora = new Bitacora()
+            {
+                Criticidad = 4,
+                Fecha = DateTime.Now,
+                IdUsuario = Security.Security.LoggedUser.IdUsuario,
+                Operacion = "Generacion de Restore",
+                Dvh = Security.Security.CrearDVH(concatDvh)
+
+            };
+
+            _bitacoraService.Insert(bitacora);
         }
         private void RestoreBacup(List<string> paths)
         {

@@ -30,10 +30,8 @@ namespace UI
         private void InitializeComponent()
         {
             this.asignarPatenteBtn = new System.Windows.Forms.Button();
-            this.altaUsuariosBtn = new System.Windows.Forms.Button();
-            this.borrarUserSinPatenteBtn = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.bajaUsuario7Btn = new System.Windows.Forms.Button();
+            this.irAdminUsuarioBtn = new System.Windows.Forms.Button();
             this.usuarioDataGrid = new System.Windows.Forms.DataGridView();
             this.patenteDataGrid = new System.Windows.Forms.DataGridView();
             this.label1 = new System.Windows.Forms.Label();
@@ -47,8 +45,11 @@ namespace UI
             this.selectUserDataGrid = new System.Windows.Forms.DataGridView();
             this.patenteUsuarioDataGrid = new System.Windows.Forms.DataGridView();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.adminFamiliaBtn = new System.Windows.Forms.Button();
             this.irBackupBtn = new System.Windows.Forms.Button();
+            this.adminFamiliaBtn = new System.Windows.Forms.Button();
+            this.logoutBtn = new System.Windows.Forms.Button();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patenteDataGrid)).BeginInit();
@@ -57,6 +58,7 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.selectUserDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patenteUsuarioDataGrid)).BeginInit();
             this.groupBox4.SuspendLayout();
+            this.groupBox5.SuspendLayout();
             this.SuspendLayout();
             // 
             // asignarPatenteBtn
@@ -69,53 +71,37 @@ namespace UI
             this.asignarPatenteBtn.UseVisualStyleBackColor = true;
             this.asignarPatenteBtn.Click += new System.EventHandler(this.asignarPatenteBtn_Click);
             // 
-            // altaUsuariosBtn
-            // 
-            this.altaUsuariosBtn.Location = new System.Drawing.Point(7, 54);
-            this.altaUsuariosBtn.Name = "altaUsuariosBtn";
-            this.altaUsuariosBtn.Size = new System.Drawing.Size(178, 23);
-            this.altaUsuariosBtn.TabIndex = 1;
-            this.altaUsuariosBtn.Text = "Alta Usuarios";
-            this.altaUsuariosBtn.UseVisualStyleBackColor = true;
-            this.altaUsuariosBtn.Click += new System.EventHandler(this.altaUsuariosBtn_Click);
-            // 
-            // borrarUserSinPatenteBtn
-            // 
-            this.borrarUserSinPatenteBtn.Location = new System.Drawing.Point(7, 22);
-            this.borrarUserSinPatenteBtn.Name = "borrarUserSinPatenteBtn";
-            this.borrarUserSinPatenteBtn.Size = new System.Drawing.Size(178, 23);
-            this.borrarUserSinPatenteBtn.TabIndex = 3;
-            this.borrarUserSinPatenteBtn.Text = "Borrar Usuarios sin Patentes";
-            this.borrarUserSinPatenteBtn.UseVisualStyleBackColor = true;
-            this.borrarUserSinPatenteBtn.Click += new System.EventHandler(this.borrarUserSinPatenteBtn_Click);
-            // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.bajaUsuario7Btn);
-            this.groupBox1.Controls.Add(this.borrarUserSinPatenteBtn);
-            this.groupBox1.Controls.Add(this.altaUsuariosBtn);
+            this.groupBox1.Controls.Add(this.irAdminUsuarioBtn);
             this.groupBox1.Location = new System.Drawing.Point(941, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(191, 117);
+            this.groupBox1.Size = new System.Drawing.Size(191, 93);
             this.groupBox1.TabIndex = 4;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Adminitracion de Usuarios";
             // 
-            // bajaUsuario7Btn
+            // irAdminUsuarioBtn
             // 
-            this.bajaUsuario7Btn.Location = new System.Drawing.Point(7, 88);
-            this.bajaUsuario7Btn.Name = "bajaUsuario7Btn";
-            this.bajaUsuario7Btn.Size = new System.Drawing.Size(178, 23);
-            this.bajaUsuario7Btn.TabIndex = 4;
-            this.bajaUsuario7Btn.Text = "Baja Usuario 7";
-            this.bajaUsuario7Btn.UseVisualStyleBackColor = true;
-            this.bajaUsuario7Btn.Click += new System.EventHandler(this.bajaUsuario7Btn_Click);
+            this.irAdminUsuarioBtn.BackColor = System.Drawing.Color.LemonChiffon;
+            this.irAdminUsuarioBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.irAdminUsuarioBtn.ForeColor = System.Drawing.Color.ForestGreen;
+            this.irAdminUsuarioBtn.Location = new System.Drawing.Point(6, 27);
+            this.irAdminUsuarioBtn.Name = "irAdminUsuarioBtn";
+            this.irAdminUsuarioBtn.Size = new System.Drawing.Size(177, 52);
+            this.irAdminUsuarioBtn.TabIndex = 12;
+            this.irAdminUsuarioBtn.Text = "Ir a Adminitracion de Usuarios ->";
+            this.irAdminUsuarioBtn.UseVisualStyleBackColor = false;
+            this.irAdminUsuarioBtn.Click += new System.EventHandler(this.irAdminUsuarioBtn_Click);
             // 
             // usuarioDataGrid
             // 
+            this.usuarioDataGrid.AllowUserToAddRows = false;
+            this.usuarioDataGrid.AllowUserToDeleteRows = false;
             this.usuarioDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.usuarioDataGrid.Location = new System.Drawing.Point(6, 71);
             this.usuarioDataGrid.Name = "usuarioDataGrid";
+            this.usuarioDataGrid.ReadOnly = true;
             this.usuarioDataGrid.RowHeadersWidth = 51;
             this.usuarioDataGrid.RowTemplate.Height = 25;
             this.usuarioDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -124,9 +110,12 @@ namespace UI
             // 
             // patenteDataGrid
             // 
+            this.patenteDataGrid.AllowUserToAddRows = false;
+            this.patenteDataGrid.AllowUserToDeleteRows = false;
             this.patenteDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.patenteDataGrid.Location = new System.Drawing.Point(662, 71);
             this.patenteDataGrid.Name = "patenteDataGrid";
+            this.patenteDataGrid.ReadOnly = true;
             this.patenteDataGrid.RowHeadersWidth = 51;
             this.patenteDataGrid.RowTemplate.Height = 25;
             this.patenteDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -222,9 +211,12 @@ namespace UI
             // 
             // selectUserDataGrid
             // 
+            this.selectUserDataGrid.AllowUserToAddRows = false;
+            this.selectUserDataGrid.AllowUserToDeleteRows = false;
             this.selectUserDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.selectUserDataGrid.Location = new System.Drawing.Point(493, 57);
             this.selectUserDataGrid.Name = "selectUserDataGrid";
+            this.selectUserDataGrid.ReadOnly = true;
             this.selectUserDataGrid.RowTemplate.Height = 25;
             this.selectUserDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.selectUserDataGrid.Size = new System.Drawing.Size(412, 150);
@@ -233,9 +225,12 @@ namespace UI
             // 
             // patenteUsuarioDataGrid
             // 
+            this.patenteUsuarioDataGrid.AllowUserToAddRows = false;
+            this.patenteUsuarioDataGrid.AllowUserToDeleteRows = false;
             this.patenteUsuarioDataGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.patenteUsuarioDataGrid.Location = new System.Drawing.Point(6, 57);
             this.patenteUsuarioDataGrid.Name = "patenteUsuarioDataGrid";
+            this.patenteUsuarioDataGrid.ReadOnly = true;
             this.patenteUsuarioDataGrid.RowTemplate.Height = 25;
             this.patenteUsuarioDataGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.patenteUsuarioDataGrid.Size = new System.Drawing.Size(481, 150);
@@ -253,19 +248,6 @@ namespace UI
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tests de Integridad";
             // 
-            // adminFamiliaBtn
-            // 
-            this.adminFamiliaBtn.BackColor = System.Drawing.Color.LemonChiffon;
-            this.adminFamiliaBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
-            this.adminFamiliaBtn.ForeColor = System.Drawing.Color.ForestGreen;
-            this.adminFamiliaBtn.Location = new System.Drawing.Point(902, 576);
-            this.adminFamiliaBtn.Name = "adminFamiliaBtn";
-            this.adminFamiliaBtn.Size = new System.Drawing.Size(230, 28);
-            this.adminFamiliaBtn.TabIndex = 14;
-            this.adminFamiliaBtn.Text = "Ir a Administracion de Familias ->";
-            this.adminFamiliaBtn.UseVisualStyleBackColor = false;
-            this.adminFamiliaBtn.Click += new System.EventHandler(this.adminFamiliaBtn_Click);
-            // 
             // irBackupBtn
             // 
             this.irBackupBtn.BackColor = System.Drawing.Color.LemonChiffon;
@@ -279,11 +261,62 @@ namespace UI
             this.irBackupBtn.UseVisualStyleBackColor = false;
             this.irBackupBtn.Click += new System.EventHandler(this.irBackupBtn_Click);
             // 
+            // adminFamiliaBtn
+            // 
+            this.adminFamiliaBtn.BackColor = System.Drawing.Color.LemonChiffon;
+            this.adminFamiliaBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.adminFamiliaBtn.ForeColor = System.Drawing.Color.ForestGreen;
+            this.adminFamiliaBtn.Location = new System.Drawing.Point(902, 576);
+            this.adminFamiliaBtn.Name = "adminFamiliaBtn";
+            this.adminFamiliaBtn.Size = new System.Drawing.Size(230, 28);
+            this.adminFamiliaBtn.TabIndex = 14;
+            this.adminFamiliaBtn.Text = "Ir a Administracion de Familias ->";
+            this.adminFamiliaBtn.UseVisualStyleBackColor = false;
+            this.adminFamiliaBtn.Click += new System.EventHandler(this.adminFamiliaBtn_Click);
+            // 
+            // logoutBtn
+            // 
+            this.logoutBtn.BackColor = System.Drawing.Color.Firebrick;
+            this.logoutBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.logoutBtn.ForeColor = System.Drawing.Color.Ivory;
+            this.logoutBtn.Location = new System.Drawing.Point(12, 576);
+            this.logoutBtn.Name = "logoutBtn";
+            this.logoutBtn.Size = new System.Drawing.Size(177, 28);
+            this.logoutBtn.TabIndex = 15;
+            this.logoutBtn.Text = "Logout";
+            this.logoutBtn.UseVisualStyleBackColor = false;
+            this.logoutBtn.Click += new System.EventHandler(this.logoutBtn_Click);
+            // 
+            // groupBox5
+            // 
+            this.groupBox5.Controls.Add(this.button1);
+            this.groupBox5.Location = new System.Drawing.Point(941, 369);
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.Size = new System.Drawing.Size(191, 63);
+            this.groupBox5.TabIndex = 16;
+            this.groupBox5.TabStop = false;
+            this.groupBox5.Text = "Bitacora";
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.LemonChiffon;
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.button1.ForeColor = System.Drawing.Color.ForestGreen;
+            this.button1.Location = new System.Drawing.Point(6, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(177, 28);
+            this.button1.TabIndex = 12;
+            this.button1.Text = "Ir a Bitacoras ->";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // MenuForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1144, 616);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.logoutBtn);
             this.Controls.Add(this.adminFamiliaBtn);
             this.Controls.Add(this.groupBox4);
             this.Controls.Add(this.groupBox3);
@@ -291,6 +324,8 @@ namespace UI
             this.Controls.Add(this.groupBox1);
             this.Name = "MenuForm";
             this.Text = "AdminSeguridad";
+            this.Load += new System.EventHandler(this.MenuForm_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MenuForm_KeyDown);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patenteDataGrid)).EndInit();
@@ -301,6 +336,7 @@ namespace UI
             ((System.ComponentModel.ISupportInitialize)(this.selectUserDataGrid)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patenteUsuarioDataGrid)).EndInit();
             this.groupBox4.ResumeLayout(false);
+            this.groupBox5.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -308,8 +344,6 @@ namespace UI
         #endregion
 
         private System.Windows.Forms.Button asignarPatenteBtn;
-        private System.Windows.Forms.Button altaUsuariosBtn;
-        private System.Windows.Forms.Button borrarUserSinPatenteBtn;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView usuarioDataGrid;
         private System.Windows.Forms.DataGridView patenteDataGrid;
@@ -325,7 +359,10 @@ namespace UI
         private System.Windows.Forms.Button quitarPatenteBtn;
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Button adminFamiliaBtn;
-        private System.Windows.Forms.Button bajaUsuario7Btn;
         private System.Windows.Forms.Button irBackupBtn;
+        private System.Windows.Forms.Button logoutBtn;
+        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button irAdminUsuarioBtn;
     }
 }

@@ -500,11 +500,11 @@ namespace UI
             this.volverPatentesBtn.BackColor = System.Drawing.Color.LemonChiffon;
             this.volverPatentesBtn.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.volverPatentesBtn.ForeColor = System.Drawing.Color.ForestGreen;
-            this.volverPatentesBtn.Location = new System.Drawing.Point(531, 178);
+            this.volverPatentesBtn.Location = new System.Drawing.Point(522, 178);
             this.volverPatentesBtn.Name = "volverPatentesBtn";
-            this.volverPatentesBtn.Size = new System.Drawing.Size(266, 28);
+            this.volverPatentesBtn.Size = new System.Drawing.Size(287, 28);
             this.volverPatentesBtn.TabIndex = 7;
-            this.volverPatentesBtn.Text = "Volver a Administracion de Patentes";
+            this.volverPatentesBtn.Text = "<- Volver a Administracion de Patentes";
             this.volverPatentesBtn.UseVisualStyleBackColor = false;
             this.volverPatentesBtn.Click += new System.EventHandler(this.volverPatentesBtn_Click);
             // 
@@ -523,6 +523,8 @@ namespace UI
             this.Controls.Add(this.groupBox1);
             this.Name = "AdminFamilia";
             this.Text = "AdminSeguridad";
+            this.Load += new System.EventHandler(this.AdminFamilia_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.AdminFamilia_KeyDown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.familiasAltaDataGrid)).EndInit();

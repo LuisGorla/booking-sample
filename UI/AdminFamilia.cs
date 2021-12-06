@@ -25,6 +25,7 @@ namespace UI
         private BindingSource asignFamiliyUserBinding = new BindingSource();
         private BindingSource dropFamiliyUserBinding = new BindingSource();
         private BindingSource deleteBajaFamiliaBinding = new BindingSource();
+        private BitacoraService _bitacoraService = new BitacoraService();
 
         public AdminFamilia()
         {
@@ -110,6 +111,18 @@ namespace UI
 
             deleteBajaFamiliaBinding.DataSource = _familiaService.GetAll();
             deleteBajaFamiliaDataGrid.DataSource = deleteBajaFamiliaBinding;
+
+            var concatDvh = $"{3}{DateTime.Now}{Security.Security.LoggedUser.IdUsuario}{"Familia Creada"}";
+            Bitacora bitacora = new Bitacora()
+            {
+                Criticidad = 3,
+                Fecha = DateTime.Now,
+                IdUsuario = Security.Security.LoggedUser.IdUsuario,
+                Operacion = "Creacion de Familia",
+                Dvh = Security.Security.CrearDVH(concatDvh)
+
+            };
+            _bitacoraService.Insert(bitacora);
 
         }
 
@@ -302,6 +315,22 @@ namespace UI
             var adminPatentes = new MenuForm();
             adminPatentes.Show();
             this.Close();
+        }
+
+        private void AdminFamilia_KeyDown(object sender, KeyEventArgs e)
+        {            
+                if (e.KeyCode == Keys.F1)
+                {
+                    e.Handled = true;
+
+                    Help.ShowHelp(this, @"C:\Repos\booking-sample\UI\Helper\HelpEsp.chm", HelpNavigator.TopicId, "100");
+                }            
+        }
+
+        private void AdminFamilia_Load(object sender, EventArgs e)
+        {
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(AdminFamilia_KeyDown);
         }
     }
 }

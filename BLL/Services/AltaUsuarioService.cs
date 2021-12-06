@@ -41,7 +41,9 @@ namespace BLL.Services
 
         public void Update(Usuario usuario)
         {
-            throw new NotImplementedException();
+            var repository = new GenericRepository<Usuario>();
+            repository.Update(usuario);
+            repository.Save();
         }
     }
 }

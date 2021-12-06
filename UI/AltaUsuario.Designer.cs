@@ -41,11 +41,13 @@ namespace UI
             this.dniLbl = new System.Windows.Forms.Label();
             this.contanctoLbl = new System.Windows.Forms.Label();
             this.volverBtn = new System.Windows.Forms.Button();
+            this.idiomaCombo = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // RegistrarBtn
             // 
-            this.RegistrarBtn.Location = new System.Drawing.Point(267, 178);
+            this.RegistrarBtn.Location = new System.Drawing.Point(142, 248);
             this.RegistrarBtn.Name = "RegistrarBtn";
             this.RegistrarBtn.Size = new System.Drawing.Size(171, 23);
             this.RegistrarBtn.TabIndex = 0;
@@ -135,19 +137,42 @@ namespace UI
             // 
             // volverBtn
             // 
-            this.volverBtn.Location = new System.Drawing.Point(267, 211);
+            this.volverBtn.BackColor = System.Drawing.Color.LemonChiffon;
+            this.volverBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.volverBtn.ForeColor = System.Drawing.Color.ForestGreen;
+            this.volverBtn.Location = new System.Drawing.Point(186, 287);
             this.volverBtn.Name = "volverBtn";
-            this.volverBtn.Size = new System.Drawing.Size(171, 23);
+            this.volverBtn.Size = new System.Drawing.Size(78, 31);
             this.volverBtn.TabIndex = 12;
-            this.volverBtn.Text = "Volver al Login";
-            this.volverBtn.UseVisualStyleBackColor = true;
+            this.volverBtn.Text = "<- Volver";
+            this.volverBtn.UseVisualStyleBackColor = false;
             this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
+            // 
+            // idiomaCombo
+            // 
+            this.idiomaCombo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.idiomaCombo.FormattingEnabled = true;
+            this.idiomaCombo.Location = new System.Drawing.Point(267, 178);
+            this.idiomaCombo.Name = "idiomaCombo";
+            this.idiomaCombo.Size = new System.Drawing.Size(171, 23);
+            this.idiomaCombo.TabIndex = 13;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(267, 160);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 15);
+            this.label1.TabIndex = 14;
+            this.label1.Text = "Seleccionar Idioma";
             // 
             // AltaUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(486, 246);
+            this.ClientSize = new System.Drawing.Size(449, 328);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.idiomaCombo);
             this.Controls.Add(this.volverBtn);
             this.Controls.Add(this.contanctoLbl);
             this.Controls.Add(this.dniLbl);
@@ -162,6 +187,7 @@ namespace UI
             this.Controls.Add(this.RegistrarBtn);
             this.Name = "AltaUsuario";
             this.Text = "AltaUsuario";
+            this.Load += new System.EventHandler(this.AltaUsuario_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -181,5 +207,7 @@ namespace UI
         private System.Windows.Forms.Label dniLbl;
         private System.Windows.Forms.Label contanctoLbl;
         private System.Windows.Forms.Button volverBtn;
+        private System.Windows.Forms.ComboBox idiomaCombo;
+        private System.Windows.Forms.Label label1;
     }
 }

@@ -72,6 +72,70 @@ namespace DAL.Data
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Modern_Spanish_CI_AS");
 
+            modelBuilder.Entity<Traduccion>(entity =>
+            {
+                entity.HasKey(e => e.IdTraduccion);
+
+                entity.ToTable("Traduccion");
+
+                entity.Property(e => e.IdTraduccion).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.txtEspanio)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.txtIngles)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+
+                entity.Property(e => e.Formulario)
+                    .HasMaxLength(200)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<UserIdioma>(entity =>
+            {
+                entity.HasKey(e => e.IdUserIdioma);
+
+                entity.ToTable("UserIdioma");
+
+                entity.Property(e => e.IdUserIdioma).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.IdUser);
+
+                entity.Property(e => e.IdUserIdioma);
+
+            });
+
+            modelBuilder.Entity<Idioma>(entity =>
+            {
+                entity.HasKey(e => e.IdIdioma);
+
+                entity.ToTable("Idioma");
+
+                entity.Property(e => e.IdIdioma).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.Detalle)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+            });
+
+            modelBuilder.Entity<Bloqueo>(entity =>
+            {
+                entity.HasKey(e => e.IdBloqueo);
+
+                entity.ToTable("Bloqueo");
+
+                entity.Property(e => e.IdBloqueo).ValueGeneratedOnAdd();
+
+                entity.Property(e => e.IdUsuario);
+
+                entity.Property(e => e.Bloqueado)
+                    .HasMaxLength(50)
+                    .IsUnicode(false);
+
+            });
+
             modelBuilder.Entity<Backup>(entity =>
             {
                 entity.HasKey(e => e.IdBackup);
@@ -122,17 +186,19 @@ namespace DAL.Data
 
             modelBuilder.Entity<Dvv>(entity =>
             {
-                entity.HasNoKey();
+                entity.HasKey(e => e.IdDvv);
 
                 entity.ToTable("DVV");
 
+                entity.Property(e => e.IdDvv).ValueGeneratedOnAdd();
+
                 entity.Property(e => e.Dvv1)
-                    .HasMaxLength(50)
+                    .HasMaxLength(500)
                     .IsUnicode(false)
                     .HasColumnName("dvv");
 
                 entity.Property(e => e.Tabla)
-                    .HasMaxLength(50)
+                    .HasMaxLength(500)
                     .IsUnicode(false);
             });
 
