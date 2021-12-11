@@ -50,6 +50,7 @@ namespace UI
             this.logoutBtn = new System.Windows.Forms.Button();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.recalculardvvBtn = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.usuarioDataGrid)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patenteDataGrid)).BeginInit();
@@ -238,12 +239,13 @@ namespace UI
             // 
             // groupBox4
             // 
+            this.groupBox4.Controls.Add(this.recalculardvvBtn);
             this.groupBox4.Controls.Add(this.irBackupBtn);
             this.groupBox4.Controls.Add(this.verificarIntegridadBtn);
             this.groupBox4.ForeColor = System.Drawing.Color.SteelBlue;
             this.groupBox4.Location = new System.Drawing.Point(941, 239);
             this.groupBox4.Name = "groupBox4";
-            this.groupBox4.Size = new System.Drawing.Size(191, 100);
+            this.groupBox4.Size = new System.Drawing.Size(191, 124);
             this.groupBox4.TabIndex = 13;
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Tests de Integridad";
@@ -253,7 +255,7 @@ namespace UI
             this.irBackupBtn.BackColor = System.Drawing.Color.LemonChiffon;
             this.irBackupBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.irBackupBtn.ForeColor = System.Drawing.Color.ForestGreen;
-            this.irBackupBtn.Location = new System.Drawing.Point(7, 66);
+            this.irBackupBtn.Location = new System.Drawing.Point(6, 90);
             this.irBackupBtn.Name = "irBackupBtn";
             this.irBackupBtn.Size = new System.Drawing.Size(177, 28);
             this.irBackupBtn.TabIndex = 11;
@@ -290,7 +292,7 @@ namespace UI
             // groupBox5
             // 
             this.groupBox5.Controls.Add(this.button1);
-            this.groupBox5.Location = new System.Drawing.Point(941, 369);
+            this.groupBox5.Location = new System.Drawing.Point(941, 129);
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.Size = new System.Drawing.Size(191, 63);
             this.groupBox5.TabIndex = 16;
@@ -309,6 +311,17 @@ namespace UI
             this.button1.Text = "Ir a Bitacoras ->";
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // recalculardvvBtn
+            // 
+            this.recalculardvvBtn.Location = new System.Drawing.Point(5, 62);
+            this.recalculardvvBtn.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.recalculardvvBtn.Name = "recalculardvvBtn";
+            this.recalculardvvBtn.Size = new System.Drawing.Size(178, 23);
+            this.recalculardvvBtn.TabIndex = 12;
+            this.recalculardvvBtn.Text = "Recalcular DVV";
+            this.recalculardvvBtn.UseVisualStyleBackColor = true;
+            this.recalculardvvBtn.Click += new System.EventHandler(this.recalculardvvBtn_Click);
             // 
             // MenuForm
             // 
@@ -364,5 +377,6 @@ namespace UI
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button irAdminUsuarioBtn;
+        private System.Windows.Forms.Button recalculardvvBtn;
     }
 }

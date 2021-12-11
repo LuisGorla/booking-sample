@@ -208,14 +208,126 @@ namespace Security
             {
                 return true;
             }
-
-            
         }
 
-        public static void RegistrarBitacora(string nombreTabla, string dvh)
+        public static bool VerificarIntegridadDvv()
         {
+            var repodvv = new GenericRepository<Dvv>();
+            var currentDvv = repodvv.GetAll();
 
+            var repoPatenteDvv = new GenericRepository<Patente>();
+            var patentesDvv = repoPatenteDvv.GetAll().Select(x => x.Dvh);
+
+            var repoFamiliaDvv = new GenericRepository<Familia>();
+            var familiasDvv = repoFamiliaDvv.GetAll().Select(x => x.Dvh);
+
+            var repoFamiliaUsuarioDvv = new GenericRepository<FamiliaUsuario>();
+            var familiaUsuariosDvv = repoFamiliaUsuarioDvv.GetAll().Select(x => x.Dvh);
+
+            var repoPatenteFamiliaDvv = new GenericRepository<PatenteFamilium>();
+            var patenteFamiliasDvv = repoPatenteFamiliaDvv.GetAll().Select(x => x.Dvh);
+
+            var repoPatenteUsuarioDvv = new GenericRepository<PatenteUsuario>();
+            var patenteUsuariosDvv = repoPatenteUsuarioDvv.GetAll().Select(x => x.Dvh);
+
+            var repoUsuariosDvv = new GenericRepository<Usuario>();
+            var usuariosDvv = repoUsuariosDvv.GetAll().Select(x => x.Dvh);
+
+            var concatPatentes = CrearDVH(string.Join("", patentesDvv));
+            var concatfamilias = CrearDVH(string.Join("", familiasDvv));
+            var concatfamiliaUsuarios = CrearDVH(string.Join("", familiaUsuariosDvv));
+            var concatpatenteFamilias = CrearDVH(string.Join("", patenteFamiliasDvv));
+            var concatpatenteUsuarios = CrearDVH(string.Join("", patenteUsuariosDvv));
+            var concatusuarios = CrearDVH(string.Join("", usuariosDvv));
+
+
+            var integridadDvv = new List<bool>();
+
+            foreach (var item in currentDvv)
+            {
+                if (item.Tabla == "Patentes")
+                {
+                    if (item.Dvv1 == concatPatentes)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+
+                if (item.Tabla == "Familias")
+                {
+                    if (item.Dvv1 == concatfamilias)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+
+                if (item.Tabla == "FamiliaUsuario")
+                {
+                    if (item.Dvv1 == concatfamiliaUsuarios)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+
+                if (item.Tabla == "PatenteFamilia")
+                {
+                    if (item.Dvv1 == concatpatenteFamilias)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+
+                if (item.Tabla == "PatenteUsuario")
+                {
+                    if (item.Dvv1 == concatpatenteUsuarios)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+
+                if (item.Tabla == "Usuarios")
+                {
+                    if (item.Dvv1 == concatusuarios)
+                    {
+                        integridadDvv.Add(true);
+                    }
+                    else
+                    {
+                        integridadDvv.Add(false);
+                    }
+                }
+            }
+
+            if (integridadDvv.Contains(false))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
+
         public static void CargarDvv()
         {
         //    var repo = new GenericRepository<Dvv>();

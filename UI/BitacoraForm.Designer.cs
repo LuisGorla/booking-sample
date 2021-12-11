@@ -41,6 +41,7 @@ namespace UI
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.volverBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.bitacoraDgv)).BeginInit();
             this.SuspendLayout();
             // 
@@ -154,11 +155,25 @@ namespace UI
             this.label4.TabIndex = 11;
             this.label4.Text = "Hasta";
             // 
+            // volverBtn
+            // 
+            this.volverBtn.BackColor = System.Drawing.Color.LemonChiffon;
+            this.volverBtn.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.volverBtn.ForeColor = System.Drawing.Color.ForestGreen;
+            this.volverBtn.Location = new System.Drawing.Point(648, 331);
+            this.volverBtn.Name = "volverBtn";
+            this.volverBtn.Size = new System.Drawing.Size(78, 31);
+            this.volverBtn.TabIndex = 13;
+            this.volverBtn.Text = "<- Volver";
+            this.volverBtn.UseVisualStyleBackColor = false;
+            this.volverBtn.Click += new System.EventHandler(this.volverBtn_Click);
+            // 
             // BitacoraForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 397);
+            this.Controls.Add(this.volverBtn);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -195,5 +210,6 @@ namespace UI
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button volverBtn;
     }
 }

@@ -19,13 +19,16 @@ namespace UI
         private FamiliaService _familiaService;
         private FamiliaUsuarioService _familiaUsuarioService;
         private PatenteFamiliaService _patenteFamiliaService;
+        private DvvService _dvvService;
         private BindingSource familiaBindingSource = new BindingSource();
-        private BindingSource familiaDataGridBinding = new BindingSource();
-        private BindingSource selectDropFamiliyBinding = new BindingSource();
-        private BindingSource asignFamiliyUserBinding = new BindingSource();
+        //private BindingSource familiaDataGridBinding = new BindingSource();
+        //private BindingSource selectDropFamiliyBinding = new BindingSource();
+        //private BindingSource asignFamiliyUserBinding = new BindingSource();
         private BindingSource dropFamiliyUserBinding = new BindingSource();
-        private BindingSource deleteBajaFamiliaBinding = new BindingSource();
+        //private BindingSource deleteBajaFamiliaBinding = new BindingSource();
+        //private BindingSource bajaFamiliaBinding = new BindingSource();
         private BitacoraService _bitacoraService = new BitacoraService();
+       
 
         public AdminFamilia()
         {
@@ -35,6 +38,7 @@ namespace UI
             _familiaService = new FamiliaService();
             _familiaUsuarioService = new FamiliaUsuarioService();
             _patenteFamiliaService = new PatenteFamiliaService();
+            _dvvService = new DvvService();
 
             var patentes = _altaPatenteService.GetAll();
 
@@ -63,7 +67,14 @@ namespace UI
             this.selectDropFamiliyDataGrid.Columns["FamiliaUsuarios"].Visible = false;
             this.selectDropFamiliyDataGrid.Columns["PatenteFamilia"].Visible = false;
 
-            asignUsersDatagrid.DataSource = _altaUsuarioService.GetAll();
+
+            var usuarios = _altaUsuarioService.GetAll();
+            foreach (var usuario in usuarios)
+            {
+                usuario.Dni = Encriptacion.Encriptacion.DecryptString(usuario.Dni);
+            }
+
+            asignUsersDatagrid.DataSource = usuarios;
             this.asignUsersDatagrid.Columns["Dvh"].Visible = false;
             this.asignUsersDatagrid.Columns["Backups"].Visible = false;
             this.asignUsersDatagrid.Columns["Bitacoras"].Visible = false;
@@ -76,7 +87,7 @@ namespace UI
             this.asignFamiliyUserDatagrid.Columns["FamiliaUsuarios"].Visible = false;
             this.asignFamiliyUserDatagrid.Columns["PatenteFamilia"].Visible = false;
 
-            selectDropUserFamiliDataGrid.DataSource = _altaUsuarioService.GetAll();
+            selectDropUserFamiliDataGrid.DataSource = usuarios;
             this.selectDropUserFamiliDataGrid.Columns["Dvh"].Visible = false;
             this.selectDropUserFamiliDataGrid.Columns["Backups"].Visible = false;
             this.selectDropUserFamiliDataGrid.Columns["Bitacoras"].Visible = false;
@@ -98,19 +109,19 @@ namespace UI
             altaFamilia.Dvh = Security.Security.CrearDVH(dvhConcat);
             _familiaService.Insert(altaFamilia);
 
-            familiasAltaDataGrid.DataSource = _familiaService.GetAll();
+            //familiasAltaDataGrid.DataSource = _familiaService.GetAll();
 
-            familiaDataGridBinding.DataSource = _familiaService.GetAll();
-            familiaDataGrid.DataSource = familiaDataGridBinding;
+            //familiaDataGridBinding.DataSource = _familiaService.GetAll();
+            //familiaDataGrid.DataSource = familiaDataGridBinding;
 
-            selectDropFamiliyBinding.DataSource = _familiaService.GetAll();
-            selectDropFamiliyDataGrid.DataSource = selectDropFamiliyBinding;
+            //selectDropFamiliyBinding.DataSource = _familiaService.GetAll();
+            //selectDropFamiliyDataGrid.DataSource = selectDropFamiliyBinding;
 
-            asignFamiliyUserBinding.DataSource = _familiaService.GetAll();
-            asignFamiliyUserDatagrid.DataSource = asignFamiliyUserBinding;
+            //asignFamiliyUserBinding.DataSource = _familiaService.GetAll();
+            //asignFamiliyUserDatagrid.DataSource = asignFamiliyUserBinding;
 
-            deleteBajaFamiliaBinding.DataSource = _familiaService.GetAll();
-            deleteBajaFamiliaDataGrid.DataSource = deleteBajaFamiliaBinding;
+            //deleteBajaFamiliaBinding.DataSource = _familiaService.GetAll();
+            //deleteBajaFamiliaDataGrid.DataSource = deleteBajaFamiliaBinding;
 
             var concatDvh = $"{3}{DateTime.Now}{Security.Security.LoggedUser.IdUsuario}{"Familia Creada"}";
             Bitacora bitacora = new Bitacora()
@@ -124,6 +135,9 @@ namespace UI
             };
             _bitacoraService.Insert(bitacora);
 
+            Reset();
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void asignPatenteBtn_Click(object sender, EventArgs e)
@@ -150,6 +164,10 @@ namespace UI
             string dvhConcat = $"{asignacion.IdPatente}{asignacion.IdFamilia}";
             asignacion.Dvh = Security.Security.CrearDVH(dvhConcat);
             _patenteFamiliaService.Insert(asignacion);
+
+            Reset();
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void quitarPatenteBtn_Click(object sender, EventArgs e)
@@ -166,6 +184,12 @@ namespace UI
             PatenteFamilium baja = new PatenteFamilium();
             baja.IdPatenteFamilia = int.Parse(idPatenteFamilia);
             _patenteFamiliaService.Delete(baja);
+            
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
+
+
+            Reset();
         }
 
         private void selectDropFamiliyDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -227,6 +251,10 @@ namespace UI
             string dvhConcat = $"{asignacion.IdFamilia}{asignacion.IdUsuario}";
             asignacion.Dvh = Security.Security.CrearDVH(dvhConcat);
             _familiaUsuarioService.Insert(asignacion);
+
+            Reset();
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void quitarFamiliaUsuarioBtn_Click(object sender, EventArgs e)
@@ -243,6 +271,10 @@ namespace UI
             FamiliaUsuario baja = new FamiliaUsuario();
             baja.IdFamiliaUsuario = int.Parse(idFamiliaUsuario);
             _familiaUsuarioService.Delete(baja);
+
+            Reset();
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void selectDropUserFamiliDataGrid_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -305,9 +337,20 @@ namespace UI
             }
 
             Familia familiaBaja = new Familia();
-            familiaBaja.IdFamilia = int.Parse(idFamilia);
+            familiaBaja.IdFamilia = int.Parse(idFamilia);           
 
             _familiaService.Delete(familiaBaja);
+
+            //var reset = _familiaService.GetAll();
+            //bajaFamiliaBinding.DataSource = reset;
+            //deleteBajaFamiliaDataGrid.DataSource = bajaFamiliaBinding;
+            //this.deleteBajaFamiliaDataGrid.Columns["Dvh"].Visible = false;
+            //this.deleteBajaFamiliaDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            //this.deleteBajaFamiliaDataGrid.Columns["PatenteFamilia"].Visible = false;
+
+            Reset();
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void volverPatentesBtn_Click(object sender, EventArgs e)
@@ -331,6 +374,94 @@ namespace UI
         {
             this.KeyPreview = true;
             this.KeyDown += new KeyEventHandler(AdminFamilia_KeyDown);
+        }
+
+        private void Reset()
+        {
+            patenteDataGrid.DataSource = null;
+            patenteDataGrid.Rows.Clear();
+
+            familiaDataGrid.DataSource = null;
+            familiaDataGrid.Rows.Clear();
+
+            familiasAltaDataGrid.DataSource = null;
+            familiasAltaDataGrid.Rows.Clear();
+
+            selectDropFamiliyDataGrid.DataSource = null;
+            selectDropFamiliyDataGrid.Rows.Clear();
+
+            asignUsersDatagrid.DataSource = null;
+            asignUsersDatagrid.Rows.Clear();
+
+            asignFamiliyUserDatagrid.DataSource = null;
+            asignFamiliyUserDatagrid.Rows.Clear();
+
+            selectDropUserFamiliDataGrid.DataSource = null;
+            selectDropUserFamiliDataGrid.Rows.Clear();
+
+            deleteBajaFamiliaDataGrid.DataSource = null;
+            deleteBajaFamiliaDataGrid.Rows.Clear();
+
+            var patentes = _altaPatenteService.GetAll();
+
+            foreach (var patente in patentes)
+            {
+                patente.Detalle = Encriptacion.Encriptacion.DecryptString(patente.Detalle);
+            }
+
+            patenteDataGrid.DataSource = patentes;
+            this.patenteDataGrid.Columns["Dvh"].Visible = false;
+            this.patenteDataGrid.Columns["PatenteFamilia"].Visible = false;
+            this.patenteDataGrid.Columns["PatenteUsuarios"].Visible = false;
+
+            familiaDataGrid.DataSource = _familiaService.GetAll();
+            this.familiaDataGrid.Columns["Dvh"].Visible = false;
+            this.familiaDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.familiaDataGrid.Columns["PatenteFamilia"].Visible = false;
+
+            familiasAltaDataGrid.DataSource = _familiaService.GetAll();
+            this.familiasAltaDataGrid.Columns["Dvh"].Visible = false;
+            this.familiasAltaDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.familiasAltaDataGrid.Columns["PatenteFamilia"].Visible = false;
+
+            selectDropFamiliyDataGrid.DataSource = _familiaService.GetAll();
+            this.selectDropFamiliyDataGrid.Columns["Dvh"].Visible = false;
+            this.selectDropFamiliyDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.selectDropFamiliyDataGrid.Columns["PatenteFamilia"].Visible = false;
+
+            var usuarios = _altaUsuarioService.GetAll();
+            foreach (var usuario in usuarios)
+            {
+                usuario.Dni = Encriptacion.Encriptacion.DecryptString(usuario.Dni);
+            }
+
+            asignUsersDatagrid.DataSource = usuarios;
+            this.asignUsersDatagrid.Columns["Dvh"].Visible = false;
+            this.asignUsersDatagrid.Columns["Backups"].Visible = false;
+            this.asignUsersDatagrid.Columns["Bitacoras"].Visible = false;
+            this.asignUsersDatagrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.asignUsersDatagrid.Columns["PatenteUsuarios"].Visible = false;
+            this.asignUsersDatagrid.Columns["Reservas"].Visible = false;
+
+            asignFamiliyUserDatagrid.DataSource = _familiaService.GetAll();
+            this.asignFamiliyUserDatagrid.Columns["Dvh"].Visible = false;
+            this.asignFamiliyUserDatagrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.asignFamiliyUserDatagrid.Columns["PatenteFamilia"].Visible = false;
+
+            selectDropUserFamiliDataGrid.DataSource = usuarios;
+            this.selectDropUserFamiliDataGrid.Columns["Dvh"].Visible = false;
+            this.selectDropUserFamiliDataGrid.Columns["Backups"].Visible = false;
+            this.selectDropUserFamiliDataGrid.Columns["Bitacoras"].Visible = false;
+            this.selectDropUserFamiliDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.selectDropUserFamiliDataGrid.Columns["PatenteUsuarios"].Visible = false;
+            this.selectDropUserFamiliDataGrid.Columns["Reservas"].Visible = false;
+
+            deleteBajaFamiliaDataGrid.DataSource = _familiaService.GetAll();
+            this.deleteBajaFamiliaDataGrid.Columns["Dvh"].Visible = false;
+            this.deleteBajaFamiliaDataGrid.Columns["FamiliaUsuarios"].Visible = false;
+            this.deleteBajaFamiliaDataGrid.Columns["PatenteFamilia"].Visible = false;
+
+            //selectDropPatenteDataGrid.DataSource = _patenteFamiliaService.GetAll().Where(x => x.IdFamilia == int.Parse(idFamilia));
         }
     }
 }

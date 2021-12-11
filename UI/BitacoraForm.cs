@@ -18,12 +18,14 @@ namespace UI
     {
         private BitacoraService _bitacoraService;
         private List<DAL.Models.Bitacora> registrosBitacora;
-        public BitacoraForm()
+        private Form _form;
+        public BitacoraForm(Form form)
         {
             InitializeComponent();
             _bitacoraService = new BitacoraService();
             registrosBitacora = new List<DAL.Models.Bitacora>();
             registrosBitacora = _bitacoraService.GetAll().ToList();
+            _form = form;
         }
 
         private void CargarDgv(List<Bitacora> bitacoras)
@@ -187,6 +189,7 @@ namespace UI
             CargarDgv(registrosBitacora);
             usuarioBox.SelectedItem = null;
             criticidadBox.SelectedItem = null;
+            Reset();
         }
 
         private void BitacoraForm_KeyDown(object sender, KeyEventArgs e)
@@ -197,6 +200,12 @@ namespace UI
 
                 Help.ShowHelp(this, @"C:\Repos\booking-sample\UI\Helper\HelpEsp.chm", HelpNavigator.TopicId, "200");
             }
+        }
+
+        private void volverBtn_Click(object sender, EventArgs e)
+        {
+            _form.Show();
+            this.Close();
         }
     }
 }

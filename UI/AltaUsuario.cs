@@ -12,6 +12,7 @@ namespace UI
         private Form _form;
         private IdiomaService _idiomaService;
         private UserIdiomaService _userIdioma;
+        private DvvService _dvvService;
         public AltaUsuario(Form form)
         {
             InitializeComponent();
@@ -19,6 +20,7 @@ namespace UI
             _altaUsuarioService = new AltaUsuarioService();
             _idiomaService = new IdiomaService();
             _userIdioma = new UserIdiomaService();
+            _dvvService = new DvvService();
         }
 
         private void RegistrarBtn_Click(object sender, EventArgs e)
@@ -38,6 +40,9 @@ namespace UI
             useridioma.IdUser = currentUser.IdUsuario;
             useridioma.IdIdioma = ((Idioma)idiomaCombo.SelectedItem).IdIdioma;
             _userIdioma.Insert(useridioma);
+
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void volverBtn_Click(object sender, EventArgs e)

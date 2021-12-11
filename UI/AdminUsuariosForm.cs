@@ -15,6 +15,7 @@ namespace UI
         private FamiliaUsuarioService _familiaUsuarioService;
         private PatenteUsuarioService _patenteUsuarioService;
         private PatenteFamiliaService _patenteFamiliaService;
+        private DvvService _dvvService;
         private BlockService _bloqueoService;
         private Form _form;
         private BindingSource userBindingSource = new BindingSource();
@@ -30,6 +31,7 @@ namespace UI
             _patenteUsuarioService = new PatenteUsuarioService();
             _patenteFamiliaService = new PatenteFamiliaService();
             _bloqueoService = new BlockService();
+            _dvvService = new DvvService();
             _form = form;
         }
 
@@ -106,6 +108,9 @@ namespace UI
             var usuarios = _altaUsuarioService.GetAll();
             userBindingSource.DataSource = usuarios;
             userDgv.DataSource = userBindingSource;
+
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void Traducir()
@@ -160,6 +165,11 @@ namespace UI
                     {
                         contactoLbl.Text = item.txtIngles;
                     }
+                    else if (this.Text == item.txtEspanio)
+                    {
+                        this.Text = item.txtIngles;
+                        this.Update();
+                    }
 
                 }
             }
@@ -203,11 +213,17 @@ namespace UI
                 usuario.Contacto = contactoTxt.Text;
             }
 
+            string dvhConcat = $"{usuario.Nombre}{usuario.Apellido}{usuario.Dni}{usuario.ContraseA}{usuario.Contacto}";
+            usuario.Dvh = Security.Security.CrearDVH(dvhConcat); 
+
             _altaUsuarioService.Update(usuario);
 
             var usuarios = _altaUsuarioService.GetAll();
             userBindingSource.DataSource = usuarios;
             userDgv.DataSource = userBindingSource;
+
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
 
         }
 

@@ -20,6 +20,7 @@ namespace UI
         private BindingSource quitarPatenteBindingSource = new BindingSource();
         private BindingSource asignarPatenteBindingSource = new BindingSource();
         private BindingSource asignarPatenteBindingSource2 = new BindingSource();
+        private int recalcularDvvCounter { get; set; }
         public MenuForm()
         {
             InitializeComponent();
@@ -29,7 +30,7 @@ namespace UI
             _familiaUsuarioService = new FamiliaUsuarioService();
             _dvvService = new DvvService();
             _bitacoraService = new BitacoraService();
-
+            recalcularDvvCounter = 0;
             var patentes = _altaPatenteService.GetAll();
 
             foreach (var patente in patentes)
@@ -138,7 +139,9 @@ namespace UI
             {
                 MessageBox.Show(Text = "El Usuario ya posee la Patente que intenta asignar");
             }
-            
+
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
 
 
 
@@ -162,17 +165,29 @@ namespace UI
 
         private void verificarIntegridadBtn_Click(object sender, EventArgs e)
         {
-            var dvv = new Dvv();
-            _dvvService.Update(dvv);
 
-
-            if (Security.Security.VerificarIntegridad())
+            if (Security.Security.VerificarIntegridad() && Security.Security.VerificarIntegridadDvv() || recalcularDvvCounter > 0)
             {
                 MessageBox.Show(Text = "No se encontraron inconsistencias de integridad");
             }
             else
             {
+                
+                var concatDvh = $"{2}{DateTime.Now}{Security.Security.LoggedUser.IdUsuario}{"Integridad Vulnerada"}";
+                Bitacora bitacora = new Bitacora()
+                {
+                    Criticidad = 5,
+                    Fecha = DateTime.Now,
+                    IdUsuario = Security.Security.LoggedUser.IdUsuario,
+                    Operacion = "Integridad Vulnerada",
+                    Dvh = Security.Security.CrearDVH(concatDvh)
+
+                };
+
+                _bitacoraService.Insert(bitacora);
+
                 MessageBox.Show(Text = "La integridad de la Base de Datos se encuentra comprometida");
+
             }
             
         }
@@ -258,6 +273,9 @@ namespace UI
             var patentesUsuarios = _patenteUsuarioService.GetAll().Where(x => x.IdUsuario == int.Parse(idUsuario));
             quitarPatenteBindingSource.DataSource = patentesUsuarios;
             patenteUsuarioDataGrid.DataSource = quitarPatenteBindingSource;
+
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
 
         private void bajaUsuario7Btn_Click(object sender, EventArgs e)
@@ -298,9 +316,9 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            var bitacora = new BitacoraForm();
+            var bitacora = new BitacoraForm(this);
             bitacora.Show();
-            this.Close();
+            this.Hide();
         }
 
         private void MenuForm_KeyDown(object sender, KeyEventArgs e)
@@ -324,6 +342,13 @@ namespace UI
             var adminUsuario = new AdminUsuariosForm(this);
             adminUsuario.Show();
             this.Hide();
+        }
+
+        private void recalculardvvBtn_Click(object sender, EventArgs e)
+        {
+            recalcularDvvCounter++;
+            var dvv = new Dvv();
+            _dvvService.Update(dvv);
         }
     }
 }
